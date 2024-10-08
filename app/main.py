@@ -8,17 +8,11 @@ class Vector:
 
     def __add__(self, other: "Vector") -> "Vector":
         if isinstance(other, Vector):
-            return Vector(
-                self.x + other.x,
-                self.y + other.y,
-            )
+            return Vector(self.x + other.x, self.y + other.y)
 
     def __sub__(self, other: int | float) -> "Vector":
         if isinstance(other, Vector):
-            return Vector(
-                self.x - other.x,
-                self.y - other.y,
-            )
+            return Vector(self.x - other.x, self.y - other.y)
 
     def __mul__(self, other: int | float) -> "Vector" and float:
         if isinstance(other, (int, float)):
@@ -27,7 +21,9 @@ class Vector:
             return self.x * other.x + self.y * other.y
 
     @staticmethod
-    def create_vector_by_two_points(start_point: tuple, end_point: tuple) -> "Vector":
+    def create_vector_by_two_points(
+        start_point: tuple, end_point: tuple
+    ) -> "Vector":
         point1 = end_point[0] - start_point[0]
         point2 = end_point[1] - start_point[1]
         return Vector(point1, point2)
@@ -53,12 +49,9 @@ class Vector:
         return round(theta_degrees)
 
     def get_angle(self) -> float:
-        angle_radians = math.atan2(self.y, self.x)
-        angle_degrees = math.degrees(angle_radians)
-        angle_degrees = angle_degrees % 360
-        return angle_degrees
+        return round(math.degrees(math.acos(self.y / self.get_length())))
 
-def rotate(self, degrees: int) -> "Vector":
+    def rotate(self, degrees: int) -> "Vector":
         radians = math.radians(degrees)
         new_x = self.x * math.cos(radians) - self.y * math.sin(radians)
         new_y = self.x * math.sin(radians) + self.y * math.cos(radians)
